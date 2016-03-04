@@ -1,0 +1,4 @@
+id,name,title,description,price,category_id,brand_id
+1,Mini skirt black edition,Mini skirt black edition,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",35,1,1
+2,T-shirt blue edition,T-shirt blue edition,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",64,2,3
+3,Sleeveless Colorblock Scuba,Sleeveless Colorblock Scuba,"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna",13,3,2
