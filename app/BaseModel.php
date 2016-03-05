@@ -1,17 +1,5 @@
 <?php
 
-/*
-    namespace App; defines the namespace for our base model
-    use Illuminate\Database\Eloquent\Model; imports the Eloquent ORM model
-    use DB; imports the DB namespace
-    public function selectQuery($sqlstmt) { return DB::select($sqlstmtt); } defines a public function selectQuery($sql_stmt). $sqlstmt is a string parameter that contains the SQL statement to be executed. DB::select($sqlstmt) executes the SQL statement
-    public function sqlStatement($sqlstmt) { DB::statement($sqlstmtt); } defines a public function sqlStatement. $sqlstmt is a string parameter that contains the SQL statement to be executed. DB::statement($sqlstmt) executes the SQL statement
-
-
-
-*/
-
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
@@ -28,3 +16,13 @@ class BaseModel extends Model
 	}
 
 }
+
+
+/*
+    namespace App; defines the namespace for our base model
+    use Illuminate\Database\Eloquent\Model; imports the Eloquent ORM model
+    use DB; imports the DB namespace
+    public function selectQuery($sqlstmt) { return DB::select($sqlstmtt); } defines a public function selectQuery($sql_stmt). $sqlstmt is a string parameter that contains the SQL statement to be executed. DB::select($sqlstmt) executes the SQL statement
+    public function sqlStatement($sqlstmt) { DB::statement($sqlstmtt); } defines a public function sqlStatement. $sqlstmt is a string parameter that contains the SQL statement to be executed. DB::statement($sqlstmt) executes the SQL statement
+
+*/

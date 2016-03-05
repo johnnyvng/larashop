@@ -131,8 +131,6 @@ class Front extends Controller {
     return view('home', array('title' => 'Welcome','description' => '','page' => 'home', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products)); loads the home blade template views and passes in the array variable parameters
 */
 
-
-
     var $brands;
     var $categories;
     var $products;

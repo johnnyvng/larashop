@@ -12,7 +12,7 @@ class CreateTablePosts extends Migration
      */
     public function up()
     {
-        Schema::create('Posts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('url', 255);
             $table->string('title', 140);
@@ -32,6 +32,6 @@ class CreateTablePosts extends Migration
      */
     public function down()
     {
-        Schema::drop('Posts');
+        Schema::drop('posts');
     }
 }

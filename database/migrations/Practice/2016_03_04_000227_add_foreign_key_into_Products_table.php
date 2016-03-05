@@ -12,11 +12,9 @@ class AddForeignKeyIntoProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('Products', function (Blueprint $table) {
-           
-            $table->foreign('category_id')->references('id')->on('Categories')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('brand_id')->references('id')->on('Brands')->onDelete('cascade')->onUpdate('cascade');
-        
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -27,9 +25,9 @@ class AddForeignKeyIntoProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('Products', function (Blueprint $table) {
+        /*Schema::table('products', function (Blueprint $table) {
             $table->dropForeign('category_id');
             $table->dropForeign('brand_id');
-        });
+        });*/
     }
 }

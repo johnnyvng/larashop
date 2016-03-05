@@ -62,33 +62,50 @@ Route::get('blade', function () {
     	'drinks' => $drinks));
 });
 
+    Route::get('/insert', function() {
+		App\Category::create(array('name' => 'Music'));
+		return 'Category added';
+	});
 /*	Eloquent ORM insert
 
     App\Category::create(array('name' => 'Music')); executes the create static function of the model. The array array('name' => 'Music') matches field names to values. Eloquent model will use these values to generate the SQL insert statement and execute it.
     return 'category added'; outputs category added in the web browser
 
 */
-    Route::get('/insert', function() {
-	App\Category::create(array('name' => 'Music'));
-	return 'Category added';
-});
 
+
+
+	Route::get('/read', function() {
+		$category = new App\Category();
+
+		$data = $category->all(array('name', 'id'));
+
+		foreach ($data as $list) {
+			echo $list->id . ' ' . $list->name . ' ';
+		}
+	});
 /*	Eloquent ORM Read
 
     $category = new App\Category(); creates an instance variable of Category model
     $data = $category->all(array('name','id')); calls the all method of the model. The array parameter array('name','id') is used to specified the column names that the query should return. If left blank, then all columns will be returned.
     foreach ($data as $list){…} loops through the returned results and displays the rows in the browser.
 */
-Route::get('/read', function() {
-	$category = new App\Category();
 
-	$data = $category->all(array('name', 'id'));
 
-	foreach ($data as $list) {
-		echo $list->id . ' ' . $list->name . ' ';
-	}
+
+Route::get('/update', function() {
+    $category = App\Category::find(6);
+
+    $category->name = 'Heavy Metal';
+
+    $category->save();
+
+    $data = $category->all(array('name', 'id'));
+
+    foreach ($data as $list) {
+    	echo $list->id . ' ' . $list->name . ' ';
+    }
 });
-
 
 /*	Eloquent ORM Update
 
@@ -98,24 +115,8 @@ Route::get('/read', function() {
 	$data = $category->all(array('name','id')); retrieves all the categories
 	foreach ($data as $list){…} loops through all the records and display the value in the web browser
 */
-Route::get('/update', function() {
-    $category = App\Category::find(7);
 
-    $category->name = 'Heavy Metal';
 
-    $category->save();
-
-    $data = $category->all(array('name', 'id'));
-
-    foreach ($data as $eachdata) {
-    	echo $eachdata->id . ' ' . $eachdata->name . ' ';
-    }
-});
-
-/*	Eloquent ORM Delete
-	
-	$category->delete(); deletes the record that was retrieved via the find method
-*/
 Route::get('/delete', function() {
 	$category = App\Category::find(7);
 
@@ -127,3 +128,7 @@ Route::get('/delete', function() {
 		echo $list->id . ' ' . $list->name . ' ';
 	}
 });
+/*	Eloquent ORM Delete
+	
+	$category->delete(); deletes the record that was retrieved via the find method
+*/
