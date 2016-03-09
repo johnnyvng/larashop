@@ -38,3 +38,9 @@
             </div>
         </section><!--/form-->
 @endsection
+
+<!-- 
+    <form method="POST" action="{{url('auth/login')}}"> defines the URL for the form action. In this case, the form will be submitted to http://localhost/larashop/public/auth/login
+    <form method="POST" action="{{url('register')}}"> defines the URL for user registration.
+    {!! csrf_field() !!} adds a security hidden field token to the form.
+ -->

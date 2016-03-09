@@ -120,5 +120,25 @@ Route::get('blade', function () {
     return view('page', array('name' => 'The Raven', 'day' => 'Friday', 'drinks' => $drinks));
 });
 
+// Add authentication routes
+Route::get('auth/login', 'Front@login');
+Route::post('auth/login', 'Front@authenticate');
+Route::get('auth/logout', 'Front@logout');
+// Registration routes...
+Route::post('/register', 'Front@register');
+/*
+    Route::get('auth/login', 'Front@login'); defines the route that displays the login and register forms
+    Route::post('auth/login', 'Front@authenticate'); defines the HTTP POST verb route that does the actual user authentication
+    Route::get('auth/logout', 'Front@logout'); defines the route that logs out a user
+    Route::post('/register', 'Front@register'); defines the HTTP POST verb route that registers users.
+*/
 
 
+Route::get('/checkout', [
+    'middleware'    =>  'auth',
+    'uses'          =>  'Front@checkout'
+    ]);
+/*
+'middleware' => 'auth', is executed before the checkout method. auth will check if a user is logged in. 
+If the user is not logged in, they will be redirected to /auth/login page. If the user is logged in, they will see the checkout page.
+*/
