@@ -19,8 +19,8 @@
 @endif
 
 <h2>Foreach Loop</h2>
-@foreach ($drinks as $onedrink)
-{{$onedrink}} <br>
+@foreach ($drinks as $drink)
+{{$drink}} <br>
 @endforeach
 
 <h2>Execute PHP Function</h2>

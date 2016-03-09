@@ -156,6 +156,17 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /* 
+         * Add the shopping cart 
+         */
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        /*
+HERE,
+
+    The above code registers the service provider for the shopping cart.
+
+        */
+
     ],
 
     /*
@@ -202,6 +213,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
 
+/*      // Add the shopping cart alias
+        HERE,
+        The above code defines an alias name that we will be using when working with the shopping cart.
+*/
+        'Cart'      => Gloudemans\Shoppingcart\Facades\Cart::class,
     ],
 
 ];
