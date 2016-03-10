@@ -64,7 +64,7 @@ class Front extends Controller {
             User::create(['name' => Request::get('name'), 'email' => Request::get('email'), 'password' => bcrypt(Request::get('password')),]);
         }
 
-        return Redirect::away('login');
+        return Redirect::away('auth/login');
     }
 
     public function authenticate() {
