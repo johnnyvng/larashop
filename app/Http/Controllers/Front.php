@@ -11,9 +11,6 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Auth;
 use Cart;
-use App\User;
-use Illuminate\Support\Facades\Auth;
-
 
 class Front extends Controller {
 
@@ -106,12 +103,13 @@ class Front extends Controller {
         }
 
         //decrease the quantity
-    if (Request::get('product_id') && (Request::get('decrease')) == 1) {
+        if (Request::get('product_id') && (Request::get('decrease')) == 1) {
             $rowId = Cart::search(array('id' => Request::get('product_id')));
             $item = Cart::get($rowId[0]);
 
             Cart::update($rowId[0], $item->qty - 1);
         }
+
 
         $cart = Cart::content();
 
@@ -130,20 +128,5 @@ class Front extends Controller {
     public function search($query) {
         return view('products', array('title' => 'Welcome', 'description' => '', 'page' => 'products'));
     }
-
-    public function register() {
-        if(Request::isMethod('post')) {
-            User::create([
-                    'name'  => Request::get('name'),
-                    'email' => Request::get('email'),
-                    'password' => bcrypt(Request::get('password')),
-                ]);
-        }
-    }
-
-    return Redirect::away('login');
-
-
-
 
 }
