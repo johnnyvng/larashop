@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Brand;
 use App\Category;
 use App\Product;
-Use App\User;
+use App\User;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -48,11 +49,30 @@ class Front extends Controller {
     }
 
     public function blog() {
-        return view('blog', array('title' => 'Welcome', 'description' => '', 'page' => 'blog', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+        $posts = \App\Post::where('id', '>', 0)->paginate(3);
+        $posts->setPath('blog');
+
+        $data['posts'] = $posts;
+
+        return view('blog', array('data' => $data, 'title' => 'Latest Blog Posts', 'description' => '', 'page' => 'blog', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
     }
 
-    public function blog_post($id) {
-        return view('blog_post', array('title' => 'Welcome', 'description' => '', 'page' => 'blog', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
+    public function blog_post($url) {
+        $post = \App\Post::where('url', '=', $url)->get();
+
+        $post_id = $post[0]['id'];
+        
+        $tags = \App\BlogPostTag::postTags($post_id);
+
+        $previous_url = \App\Post::prevBlogPostUrl($post_id);
+        $next_url = \App\Post::nextBlogPostUrl($post_id);
+
+        $data['previous_url'] = $previous_url;
+        $data['next_url'] = $next_url;
+        $data['tags'] = $tags;
+        $data['post'] = $post[0];
+
+        return view('blog_post', array('data' => $data, 'title' => $post[0]['title'], 'description' => $post[0]['description'], 'page' => 'blog', 'brands' => $this->brands, 'categories' => $this->categories, 'products' => $this->products));
     }
 
     public function contact_us() {
